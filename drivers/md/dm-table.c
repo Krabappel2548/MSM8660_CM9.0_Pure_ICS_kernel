@@ -100,7 +100,7 @@ static inline unsigned int get_child(unsigned int n, unsigned int k)
 }
 
 /*
- * Return the n'th node of level l from table t.
+ * Return the n'th node of level l from table t.(void) blk_integrity_register(dm_disk(t->md),
  */
 static inline sector_t *get_node(struct dm_table *t,
 				 unsigned int l, unsigned int n)
@@ -1185,7 +1185,7 @@ static void dm_table_set_integrity(struct dm_table *t)
 
 	template_disk = dm_table_get_integrity_disk(t, true);
 	if (template_disk)
-		blk_integrity_register(dm_disk(t->md),
+		(void) blk_integrity_register(dm_disk(t->md),
 				       blk_get_integrity(template_disk));
 	else if (blk_integrity_is_initialized(dm_disk(t->md)))
 		DMWARN("%s: device no longer has a valid integrity profile",
